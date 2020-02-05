@@ -37,10 +37,10 @@ export default class Register extends React.Component {
         
         
         const user = {
-            firstname: this.state.firstname,
-            lastname: this.state.lastname,
-            email: this.state.email,
-            password: this.state.password
+            FirstName: this.state.firstname,
+            LastName: this.state.lastname,
+            Email: this.state.email,
+            Password: this.state.password
         };
 
         console.log(user);

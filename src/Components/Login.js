@@ -16,10 +16,6 @@ export default class Login extends React.Component {
                     <input type="password" className="form-control" placeholder="Enter password" />
                 </div>
 
-                <div className="form-group">
-                    
-                </div>
-
                 <button type="submit" className="button">Submit</button>
                 <p className="forgot-password text-right">
                     Forgot <a href="#">password?</a>
