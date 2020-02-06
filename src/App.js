@@ -1,14 +1,14 @@
 import React from 'react';
-import logo from './logo.svg';
 import Register from './Components/Register';
 import Login from './Components/Login';
-import { Link, BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import ForgotPassword from './Components/ForgotPassword';
 
 function App() {
   return (
     <Router>
     <div className="App">
-      <nav>
+      {/* <nav>
         <div className="container">
           <Link className="brand" to={"/sign-in"}>ChatApp</Link>
            <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
@@ -22,13 +22,14 @@ function App() {
              </ul>
            </div>
         </div>
-      </nav>
+      </nav> */}
 
       <div className="form">
           <Switch>
             <Route exact path='/' component={Login} />
             <Route path="/sign-in" component={Login} />
             <Route path="/sign-up" component={Register} />
+            <Route path="/forgotpassword" component={ForgotPassword} />
           </Switch>
       </div>
     </div>

@@ -5,10 +5,10 @@
   }
 
   body {
-    margin:50px 0px; 
+    margin:90px 0px; 
     padding:0px;
     text-align:center;
-    background-color: #f2f2f2;
+    background-color: #34BA96;
   } 
   
   h1,h2,h3,h4,h5,h6,label,span {
@@ -23,6 +23,7 @@
     border-radius: 10px;
     border: 1px solid #ccc;
     box-shadow: 0 5px 10px 7px rgba(0, 0, 0, 0.2);
+    background-color: #f2f2f2;
   }
   
   .form-control {
@@ -42,9 +43,24 @@
       opacity: 0.7;
       width: fit-content;
       border-radius: 6px;
+      margin-bottom:10px;
   }
 
   label{
       float: left;
       padding-left: 30px;
+  }
+
+  .forgotpassword text-right {
+    text-align: left !important;
+    display: inline;
+  }
+
+  .forgotpassword text-left {
+    text-align: right !important;
+    display: inline;
+  }
+
+  .nav-link{
+    text-decoration: none;
   }
