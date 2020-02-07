@@ -46,6 +46,10 @@
       margin-bottom:10px;
   }
 
+  .button:hover {
+    background-color: #000000;
+  }
+
   label{
       float: left;
       padding-left: 30px;
