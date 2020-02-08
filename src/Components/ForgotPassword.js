@@ -7,9 +7,7 @@ export default class ForgotPassword extends React.Component{
         super(props);
 
         this.state = {
-            Email: '',
-            EmailValid:false,
-            submitDisabled: true
+            Email: ''
         }
     }
 

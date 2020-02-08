@@ -68,3 +68,14 @@
   .nav-link{
     text-decoration: none;
   }
+
+  .errorMessage{
+    color: red;
+    font-size: x-small;
+    display: relative;
+  }
+
+  span{
+    font-size: x-small;
+    display: absolute;
+  }
