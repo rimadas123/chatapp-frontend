@@ -3,7 +3,7 @@ import Register from './Components/Register';
 import Login from './Components/Login';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import ForgotPassword from './Components/ForgotPassword';
-import DashBoard from './Components/DashBoard';
+import ResetPassword from './Components/ResetPassword';
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
             <Route path="/sign-in" component={Login} />
             <Route path="/sign-up" component={Register} />
             <Route path="/forgotpassword" component={ForgotPassword} />
-            <Route path="/dashboard" component={DashBoard} />
+            <Route path="/resetpassword/:token" component={ResetPassword} />
           </Switch>
     </div>
     </Router>

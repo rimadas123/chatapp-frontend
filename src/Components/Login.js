@@ -6,17 +6,30 @@ export default class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            Email:'',
-            Password:''
+            Email: '',
+            Password: ''          
         }
     }
 
     handleChangeEmail = event => {
-        this.setState({ Email: event.target.value})
+        let EmailValid = event.target.value ? true : false
+        let submitValid = this.state.EmailValid
+        console.log(submitValid);
+        this.setState({ 
+            Email: event.target.value,
+            EmailValid: EmailValid,
+            submitDisabled : !submitValid
+        });
     }
 
     handleChangePassword = event => {
-        this.setState({ Password: event.target.value})
+        let PasswordValid = event.target.value ? true : false
+        let submitValid = this.state.PasswordValid
+        this.setState({ 
+            Password: event.target.value,
+            PasswordValid: PasswordValid,
+            submitDisabled: !submitValid
+        });
     }
 
     handleSubmit = event => {
@@ -31,6 +44,7 @@ export default class Login extends React.Component {
         .then(res =>{
             console.log(res);
             console.log(res.data);
+            this.setState({Email:'',Password:''})
         })
         .catch(err => {
             console.log("error caught",err);

@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700,800');
+
+*{
+    box-sizing: border-box;
+}
+
+.dashboard{
+    margin: auto;
+}
+
+.leftrow{
+    width: 40%;
+    display: flex;
+}
+
+.middlerow {
+    width: 60%;
+    display: flex;
+}

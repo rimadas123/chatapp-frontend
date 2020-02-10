@@ -12,7 +12,13 @@ export default class ForgotPassword extends React.Component{
     }
 
     handleChangeEmail = event =>{
-        this.setState({ Email: event.target.value })
+        let EmailValid = event.target.value ? true : false;
+        let submitValid = this.state.EmailValid
+        this.setState({ 
+            Email: event.target.value,
+            EmailValid: EmailValid,
+            submitDisabled: !submitValid
+        })
     }
 
     handleSubmit = event => {
@@ -49,10 +55,9 @@ export default class ForgotPassword extends React.Component{
                         onChange={this.handleChangeEmail}/>
                     </div>
 
-                    <button  className="button" onClick={this.handleSubmit}>Sign Up</button>
+                    <button  className="button" onClick={this.handleSubmit}>Okay</button>
                 </form>
-            </div>
-            
+            </div>     
         );
     }
 }

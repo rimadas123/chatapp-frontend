@@ -1,4 +1,8 @@
 import React from 'react';
+<<<<<<< HEAD
+=======
+import './css/dashboard.css';
+>>>>>>> 076033883a093a425e984a352834660cfffdb6e4
 
 export default class DashBoard extends React.Component{
     render(){
@@ -27,4 +31,8 @@ export default class DashBoard extends React.Component{
             </div>
         );
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 076033883a093a425e984a352834660cfffdb6e4
