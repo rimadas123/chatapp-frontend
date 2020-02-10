@@ -40,29 +40,31 @@ export default class ResetPassword extends React.Component {
 
     render(){
         return(
-            <form>
-                <h3>Reset Password</h3>
+            <div className="wrapper">
+                <form>
+                    <h3>Reset Password</h3>
 
-                <div className="form-group">
-                    <label>New Password</label>
-                    <input type="password" 
-                    className="form-control" 
-                    placeholder="Enter New password"
-                    value={this.state.NewPassword}
-                    onChange={this.handleNewPassword} />
-                </div>
+                    <div className="form-group">
+                        <label>New Password</label>
+                        <input type="password" 
+                        className="form-control" 
+                        placeholder="Enter New password"
+                        value={this.state.NewPassword}
+                        onChange={this.handleNewPassword} />
+                    </div>
 
-                <div className="form-group">
-                    <label>Confirm Password</label>
-                    <input type="password" 
-                    className="form-control" 
-                    placeholder="Enter Confirm password"
-                    value={this.state.ConfirmPassword}
-                    onChange={this.handleConfirmPassword} />
-                </div>
+                    <div className="form-group">
+                        <label>Confirm Password</label>
+                        <input type="password" 
+                        className="form-control" 
+                        placeholder="Enter Confirm password"
+                        value={this.state.ConfirmPassword}
+                        onChange={this.handleConfirmPassword} />
+                    </div>
 
-                <button  className="button" onClick={this.handleSubmit}>Okay</button>
-            </form>
+                    <button  className="button" onClick={this.handleSubmit}>Okay</button>
+                </form>
+            </div>
         );
     }
 }

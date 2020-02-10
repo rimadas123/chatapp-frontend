@@ -31,9 +31,7 @@ export default class Register extends React.Component {
         };
     }
 
-    handleSubmit= e => {
-        e.preventDefault();
-        
+    handleSubmit= e => { 
         if(formValid(this.state.formErrors)){
 
             const user = {
@@ -49,7 +47,6 @@ export default class Register extends React.Component {
             .then(res => {
                 console.log(res);
                 console.log(res.data);
-                this.setState({FirstName:'',LastName:'',Email:'',Password:''})
             })
             .catch(err =>{
                 console.log("error caught",err);
@@ -57,6 +54,8 @@ export default class Register extends React.Component {
         } else {
             console.error('Form Invalid');
         }
+        e.preventDefault();
+        this.setState({FirstName:'',LastName:'',Email:'',Password:''})
     }
 
     handleChange = e => {
@@ -90,70 +89,73 @@ export default class Register extends React.Component {
         const { formErrors } = this.state;
 
         return (
-            <form>
-                <h3>Sign Up</h3>
+                <div className="wrapper">
+                    <form>
+                    
+                        <h3>Sign Up</h3>
 
-                <div className="form-group">
-                    <label>First Name</label>
+                        <div className="form-group">
+                            <label>First Name</label>
 
-                    <input type="text"
-                     className="form-control"
-                     placeholder="First Name" 
-                     name="FirstName" 
-                     onChange={this.handleChange} 
-                     />
-                     { formErrors.FirstName.length > 0 && (
-                         <span className="errorMessage">{formErrors.FirstName}</span>
-                     )}
-                </div>
+                            <input type="text"
+                            className="form-control"
+                            placeholder="First Name" 
+                            name="FirstName" 
+                            onChange={this.handleChange} 
+                            />
+                            { formErrors.FirstName.length > 0 && (
+                                <span className="errorMessage">{formErrors.FirstName}</span>
+                            )}
+                        </div>
 
-                <div className="form-group">
-                    <label>Last Name</label>
+                        <div className="form-group">
+                            <label>Last Name</label>
 
-                    <input type="text" 
-                    className="form-control" 
-                    placeholder="Last Name" 
-                    name="LastName" 
-                    onChange={this.handleChange}
-                    />
-                    { formErrors.LastName.length > 0 && (
-                        <span className="errorMessage">{formErrors.LastName}</span>
-                    )}
-                </div>
+                            <input type="text" 
+                            className="form-control" 
+                            placeholder="Last Name" 
+                            name="LastName" 
+                            onChange={this.handleChange}
+                            />
+                            { formErrors.LastName.length > 0 && (
+                                <span className="errorMessage">{formErrors.LastName}</span>
+                            )}
+                        </div>
 
-                <div className="form-group">
-                    <label>Email Address</label>
+                        <div className="form-group">
+                            <label>Email Address</label>
 
-                    <input type="email" 
-                    className="form-control" 
-                    placeholder="Email Address" 
-                    name="Email" 
-                    onChange={this.handleChange}
-                    />
-                    { formErrors.Email.length > 0 && (
-                        <span className="errorMessage">{formErrors.Email}</span>
-                    )}
-                </div>
+                            <input type="email" 
+                            className="form-control" 
+                            placeholder="Email Address" 
+                            name="Email" 
+                            onChange={this.handleChange}
+                            />
+                            { formErrors.Email.length > 0 && (
+                                <span className="errorMessage">{formErrors.Email}</span>
+                            )}
+                        </div>
 
-                <div className="form-group">
-                    <label>Password</label>
+                        <div className="form-group">
+                            <label>Password</label>
 
-                    <input type="password" 
-                    className="form-control" 
-                    placeholder="Password" 
-                    name="Password" 
-                    onChange={this.handleChange}
-                    />
-                    { formErrors.Password.length > 0 && (
-                        <span className="errorMessage">{formErrors.Password}</span>
-                    )}
-                </div>
+                            <input type="password" 
+                            className="form-control" 
+                            placeholder="Password" 
+                            name="Password" 
+                            onChange={this.handleChange}
+                            />
+                            { formErrors.Password.length > 0 && (
+                                <span className="errorMessage">{formErrors.Password}</span>
+                            )}
+                        </div>
 
-                <button type="submit" className="button" onClick={this.handleSubmit}>Sign Up</button>
-                <p className="forgot-password text-right">     
-                Already registered ? <Link className="nav-link" to ={"/sign-in"}> Sign In</Link>
-                </p>
-            </form>    
+                        <button type="submit" className="button" onClick={this.handleSubmit}>Sign Up</button>
+                        <p className="forgot-password text-right">     
+                        Already registered ? <Link className="nav-link" to ={"/sign-in"}> Sign In</Link>
+                        </p>
+                </form>
+            </div>                     
         );
     }
 }
