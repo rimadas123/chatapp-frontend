@@ -2,20 +2,28 @@ import React from 'react';
 import './css/dashboard.css';
 
 export default class DashBoard extends React.Component{
-    render() {
+    render(){
         return(
-            <div className="dashboard">
-                <nav>
-
+            <div>
+                <nav className="topNav">
+                    <a href="#">ChatApp</a>
                 </nav>
-                <div className="leftrow">                   
-                        hello
-                </div>
-                <div className="middlerow">
-                     <form>
-                         <input type="text" name = "message" placeholder="type your message here" />
-                         <button type="submit">send</button>
-                     </form>
+
+                <div className="row">
+                    <div className="leftcolumn">
+                        <div className="card">
+                            <h3>Users List</h3>
+                        </div>
+                    </div>
+                    <div className="middle">
+                        <div className="card">
+                            <h3>Chat</h3>
+                            <form>
+                                <input type="text" placeholder="type your message here" />
+                                <button type="submit">send</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         );
