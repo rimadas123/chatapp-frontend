@@ -4,11 +4,14 @@
   box-sizing: border-box;
   }
 
-  body {
+  body{
+    background-color: #34BA96;
+  }
+
+  .wrapper {
     margin:90px 0px; 
     padding:0px;
     text-align:center;
-    background-color: #34BA96;
   } 
   
   h1,h2,h3,h4,h5,h6,label,span {
@@ -46,6 +49,10 @@
       margin-bottom:10px;
   }
 
+  .button:hover {
+    background-color: #000000;
+  }
+
   label{
       float: left;
       padding-left: 30px;
@@ -63,4 +70,10 @@
 
   .nav-link{
     text-decoration: none;
+  }
+
+  .errorMessage{
+    color: red;
+    font-size: small;
+    display: inline;
   }

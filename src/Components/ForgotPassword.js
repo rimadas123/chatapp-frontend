@@ -34,22 +34,25 @@ export default class ForgotPassword extends React.Component{
 
     render() {
         return(
-            <form>
-                <h3>Forgot Password</h3>
+            <div className="wrapper">
+                <form>
+                    <h3>Forgot Password</h3>
 
-                <div className="form-group">
-                    <label>Email Address</label>
+                    <div className="form-group">
+                        <label>Email Address</label>
 
-                    <input type="email" 
-                    className="form-control" 
-                    placeholder="Email Address" 
-                    name="email" 
-                    value={this.state.Email} 
-                    onChange={this.handleChangeEmail}/>
-                </div>
+                        <input type="email" 
+                        className="form-control" 
+                        placeholder="Email Address" 
+                        name="email" 
+                        value={this.state.Email} 
+                        onChange={this.handleChangeEmail}/>
+                    </div>
 
-                <button  className="button" onClick={this.handleSubmit}>Sign Up</button>
-            </form>
+                    <button  className="button" onClick={this.handleSubmit}>Sign Up</button>
+                </form>
+            </div>
+            
         );
     }
 }
