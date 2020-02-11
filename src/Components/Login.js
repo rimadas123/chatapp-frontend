@@ -12,24 +12,10 @@ export default class Login extends React.Component {
     }
 
     handleChangeEmail = event => {
-        let EmailValid = event.target.value ? true : false
-        let submitValid = this.state.EmailValid
-        console.log(submitValid);
-        this.setState({ 
-            Email: event.target.value,
-            EmailValid: EmailValid,
-            submitDisabled : !submitValid
-        });
-    }
-
-    handleChangePassword = event => {
-        let PasswordValid = event.target.value ? true : false
-        let submitValid = this.state.PasswordValid
-        this.setState({ 
-            Password: event.target.value,
-            PasswordValid: PasswordValid,
-            submitDisabled: !submitValid
-        });
+       const {name,value} = event.target;
+       this.setState({
+           [name]:value
+       })
     }
 
     handleSubmit = event => {

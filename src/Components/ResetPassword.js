@@ -11,31 +11,28 @@ export default class ResetPassword extends React.Component {
         }
     }
 
-    handleNewPassword = event => {
-        this.setState({ NewPassword: event.target.value})
-    }
-
-    handleConfirmPassword = event => {
-        this.setState({ConfirmPassword: event.target.value})
+    handleChange = event => {
+        const { name,value } = event.target;
+        this.setState({ 
+            [name]: value
+        })
     }
  
     handleSubmit = event => {
         event.preventDefault();
         
-        const { NewPassword, ConfirmPassword } = this.state;
-        if(NewPassword !== ConfirmPassword) {
-            alert("Password does not match");
-        } else {
-
-            axios.post('http://localhost:3001/resetpassword')
-            .then(res =>{
-                console.log(res);
-                console.log(res.data);
-            })
-            .catch(err => {
-                console.log("caught error",err);
-            })
+        const reset = {
+            NewPassword:this.state.NewPassword,
+            ConfirmPassword:this.state.ConfirmPassword
         }
+        axios.post('http://localhost:3001/resetpassword',reset)
+        .then(res =>{
+            console.log(res);
+            console.log(res.data);
+        })
+        .catch(err => {
+            console.log("caught error",err);
+        })
     }
 
     render(){
@@ -50,7 +47,7 @@ export default class ResetPassword extends React.Component {
                         className="form-control" 
                         placeholder="Enter New password"
                         value={this.state.NewPassword}
-                        onChange={this.handleNewPassword} />
+                        onChange={this.handleChange} />
                     </div>
 
                     <div className="form-group">
@@ -59,7 +56,7 @@ export default class ResetPassword extends React.Component {
                         className="form-control" 
                         placeholder="Enter Confirm password"
                         value={this.state.ConfirmPassword}
-                        onChange={this.handleConfirmPassword} />
+                        onChange={this.handleChange} />
                     </div>
 
                     <button  className="button" onClick={this.handleSubmit}>Okay</button>

@@ -1,7 +1,7 @@
 import React from "react";
 import './css/form.css';
 import { Link } from 'react-router-dom';
-import registerservice from '../service/axiosservice';
+let registerservice = require('../service/axiosservice');
 
 const emailRegex = RegExp(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
 
@@ -52,12 +52,12 @@ export default class Register extends React.Component {
             // .catch(err =>{
             //     console.log("error caught",err);
             // })
-            if(registerservice(user)){
-                console.log("success");
-            } else{
-                console.log("error");
-            }
-
+            registerservice.axiosRegister(user).then((result) => {
+                console.log("successfully created user",result);
+            }).catch((err) => {
+                console.log(err);
+            });
+            
         } else {
             console.error('Form Invalid');
         }
