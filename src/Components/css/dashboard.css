@@ -1,19 +1,49 @@
 @import url('https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700,800');
 
-*{
-    box-sizing: border-box;
-}
-
 .dashboard{
     margin: auto;
 }
 
-.leftrow{
-    width: 40%;
-    display: flex;
+.topnav a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+
+.chat {
+    height: 400px;
+    width: 100%;
+    background-color: #f2f2f2;
 }
 
-.middlerow {
-    width: 60%;
-    display: flex;
+.column1{
+    width: 20%;
+    float: left;
+    padding: 20px;
 }
+.column2{
+    width: 70%;
+    float: left;
+    padding: 20px;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+input[type=text] {
+    width: 80%;
+    padding: 10px;
+}
+
+button{
+    width: 20%;
+    padding: 10px;
+} 
+
+  

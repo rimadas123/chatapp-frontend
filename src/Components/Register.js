@@ -1,7 +1,7 @@
 import React from "react";
 import './css/form.css';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
+import registerservice from '../service/axiosservice';
 
 const emailRegex = RegExp(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
 
@@ -44,14 +44,20 @@ export default class Register extends React.Component {
 
             console.log(user);
             
-            axios.post('http://localhost:3001/register', user )
-            .then(res => {
-                console.log(res);
-                console.log(res.data);
-            })
-            .catch(err =>{
-                console.log("error caught",err);
-            })
+            // axios.post('http://localhost:3001/register', user )
+            // .then(res => {
+            //     console.log(res);
+            //     console.log(res.data);
+            // })
+            // .catch(err =>{
+            //     console.log("error caught",err);
+            // })
+            if(registerservice(user)){
+                console.log("success");
+            } else{
+                console.log("error");
+            }
+
         } else {
             console.error('Form Invalid');
         }
@@ -92,7 +98,7 @@ export default class Register extends React.Component {
 
         return (
             <div className="wrapper">
-                <form>
+                <form className="form">
                     <h3>Sign Up</h3>
 
                     <div className="form-group">

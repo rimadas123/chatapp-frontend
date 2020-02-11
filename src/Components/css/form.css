@@ -19,7 +19,7 @@
     font-family: 'Fira Sans', sans-serif;
   }
   
-  form {
+  .form {
     display: inline-block;
     margin: auto;
     text-align: center;
@@ -32,7 +32,7 @@
   .form-control {
     margin: 10px;
     padding: 10px;
-    width: 90%;
+    width: 90% !important;
     display: block;
     border: 1px solid #ccc;
     border-radius: 4px;  

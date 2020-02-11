@@ -27,7 +27,7 @@ export default class ResetPassword extends React.Component {
             alert("Password does not match");
         } else {
 
-            axios.post('http://localhost:3001/resetpassword',ConfirmPassword)
+            axios.post('http://localhost:3001/resetpassword')
             .then(res =>{
                 console.log(res);
                 console.log(res.data);
@@ -41,7 +41,7 @@ export default class ResetPassword extends React.Component {
     render(){
         return(
             <div className="wrapper">
-                <form>
+                <form className="form">
                     <h3>Reset Password</h3>
 
                     <div className="form-group">

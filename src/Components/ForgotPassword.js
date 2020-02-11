@@ -36,12 +36,14 @@ export default class ForgotPassword extends React.Component{
         .catch(err =>{
             console.log("error caught",err);
         })
+        event.preventDefault();
+        this.setState({Email:''})
     }
 
     render() {
         return(
             <div className="wrapper">
-                <form>
+                <form className="form">
                     <h3>Forgot Password</h3>
 
                     <div className="form-group">
