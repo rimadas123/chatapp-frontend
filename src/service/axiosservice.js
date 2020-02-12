@@ -7,7 +7,7 @@ const userservice = {
 
         },
         loginservice : function(res) {
-            console.log(res);
+            // console.log(res);
          return axios.post(BASEURL+'/login', res);
         },
         forgotpasswordservice : function(res){

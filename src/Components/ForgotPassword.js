@@ -32,12 +32,13 @@ export default class ForgotPassword extends React.Component{
         .then(res => {
             console.log(res);
             console.log(res.data);
+            this.setState({
+                Email:''
+            })
         })
         .catch(err =>{
             console.log("error caught",err);
         })
-        event.preventDefault();
-        this.setState({Email:''})
     }
 
     render() {
