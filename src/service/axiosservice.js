@@ -1,14 +1,25 @@
 import axios from "axios";
+const BASEURL = 'http://localhost:3001';
 
-module.exports = {
-    async axiosRegister(res){
-        try {
-            const response = await axios.post('http://localhost:3001/register', res);
-            return response.data;
+const userservice = {
+        resgisterservice : function(res) {
+         return axios.post(BASEURL+'/register', res)
+
+        },
+        loginservice : function(res) {
+            console.log(res);
+         return axios.post(BASEURL+'/login', res);
+        },
+        forgotpasswordservice : function(res){
+            return axios.post(BASEURL+'/forgotpassword', res);
+        },
+        resetpasswordservice : function(res) {
+            return axios.post(BASEURL+'/resetpassword', res);
+        },
+        userlistservice : function() {
+            return axios.get(BASEURL+'/userlist');
         }
-        catch (error) {
-            return error;
-        }
-    }
-    
 }
+
+export default userservice;
+

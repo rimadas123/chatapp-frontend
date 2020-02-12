@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import userservice from '../service/axiosservice';
 
 export default class Login extends React.Component {
     constructor(props) {
@@ -11,33 +11,36 @@ export default class Login extends React.Component {
         }
     }
 
-    handleChangeEmail = event => {
-       const {name,value} = event.target;
+    handleChange = event => {
        this.setState({
-           [name]:value
+           [event.target.name]:event.target.value
        })
     }
 
-    handleSubmit = event => {
+    handleSubmit = event => {   
         event.preventDefault();
-        
+
         const user = {
             Email:this.state.Email,
             Password:this.state.Password
         }
-
-        axios.post('http://localhost:3001/login',user)
+        console.log(user);
+        
+        userservice.loginservice(user)
         .then(res =>{
             console.log(res);
             console.log(res.data);
-            this.setState({Email:'',Password:''})
-        })
+            localStorage.setItem('senderId',res.data.data[0]._id);
+            localStorage.setItem('senderName',res.data.data[0].FirstName);
+            localStorage.setItem('senderEmail',res.data.data[0].Email);
+                this.setState({
+                    Email:'',
+                    Password:''
+                })
+            })
         .catch(err => {
             console.log("error caught",err);
-        })
-
-        event.preventDefault();
-        this.setState({Email:'',Password:''})  
+        })     
     }
     
     render() {
@@ -50,18 +53,18 @@ export default class Login extends React.Component {
                         <label>Email address</label>
                         <input type="email" 
                         className="form-control" 
+                        name="Email"
                         placeholder="Enter email"
-                        value={this.state.Email}
-                        onChange={this.handleChangeEmail} />
+                        onChange={this.handleChange} />
                     </div>
 
                     <div className="form-group">
                         <label>Password</label>
                         <input type="password" 
                         className="form-control" 
+                        name="Password"
                         placeholder="Enter password"
-                        value={this.state.Password}
-                        onChange={this.handleChangePassword} />
+                        onChange={this.handleChange} />
                     </div>
 
                     <button type="submit" className="button" onClick={this.handleSubmit}>Submit</button>

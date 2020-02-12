@@ -1,6 +1,6 @@
 import React from "react";
-import axios from 'axios';
 import './css/form.css';
+import userservice from '../service/axiosservice';
 
 export default class ForgotPassword extends React.Component{
     constructor(props) {
@@ -28,7 +28,7 @@ export default class ForgotPassword extends React.Component{
             Email:this.state.Email
         }
 
-        axios.post('http://localhost:3001/forgotpassword', user)
+        userservice.forgotpasswordservice(user)
         .then(res => {
             console.log(res);
             console.log(res.data);

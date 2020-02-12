@@ -1,6 +1,6 @@
 import React from "react";
-import axios from 'axios';
 import './css/form.css';
+import userservice from '../service/axiosservice';
 
 export default class ResetPassword extends React.Component {
     constructor(props) {
@@ -12,9 +12,8 @@ export default class ResetPassword extends React.Component {
     }
 
     handleChange = event => {
-        const { name,value } = event.target;
         this.setState({ 
-            [name]: value
+            [event.target.name]: event.target.value
         })
     }
  
@@ -25,7 +24,7 @@ export default class ResetPassword extends React.Component {
             NewPassword:this.state.NewPassword,
             ConfirmPassword:this.state.ConfirmPassword
         }
-        axios.post('http://localhost:3001/resetpassword',reset)
+        userservice.resetpasswordservice(reset)
         .then(res =>{
             console.log(res);
             console.log(res.data);
@@ -45,8 +44,8 @@ export default class ResetPassword extends React.Component {
                         <label>New Password</label>
                         <input type="password" 
                         className="form-control" 
+                        name="NewPassword"
                         placeholder="Enter New password"
-                        value={this.state.NewPassword}
                         onChange={this.handleChange} />
                     </div>
 
@@ -54,8 +53,8 @@ export default class ResetPassword extends React.Component {
                         <label>Confirm Password</label>
                         <input type="password" 
                         className="form-control" 
+                        name="ConfirmPassword"
                         placeholder="Enter Confirm password"
-                        value={this.state.ConfirmPassword}
                         onChange={this.handleChange} />
                     </div>
 
