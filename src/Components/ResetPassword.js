@@ -24,6 +24,7 @@ export default class ResetPassword extends React.Component {
             NewPassword:this.state.NewPassword,
             ConfirmPassword:this.state.ConfirmPassword
         }
+       
         userservice.resetpasswordservice(reset)
         .then(res =>{
             console.log(res);

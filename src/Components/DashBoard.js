@@ -9,7 +9,9 @@ export default class DashBoard extends React.Component{
         this.state ={
             response: false,
             endpoint: "http://localhost:3001",
-            users:[]
+            users:[],
+            message:[],
+            filmessage:[]
         }
     }
     componentDidMount(){
@@ -29,21 +31,54 @@ export default class DashBoard extends React.Component{
             console.log(msg);
         })
     }
+    
+    getMessage = (user) =>{
+        localStorage.setItem('receiverId',user._id)
+        localStorage.setItem('receiverName',user.FirstName)
+        console.log(user._id);
+        
+        userservice.getmessageservice()
+        .then(res => {
+            
+            console.log('===>',res);
+            const msg = res.data;
+             this.filmessage =msg.filter(ele=>{
+                 console.log(ele);
+                 
+                return ele.receiverId === localStorage.getItem('receiverId')
+                })
+                console.log("filter message",this.filmessage);
+                
+            this.setState({message:this.filmessage});
+        })
+        }
+
+    logout = () =>{
+        this.props.history.push('/');
+    }
+
     render(){
+        let messages = this.state.message.map((msg,index)=>{
+            return (<div key={index}>{msg.message}</div>)
+        })
         return(
             <div className="dashboard">
                 <div className="topNav">
                     <h3>ChatApp</h3>
+                    <button className="right-col" onClick={this.logout}>Logout</button>
                 </div>
 
                 <div className="row">
                     <div className="column1">
                         <h3>Users List</h3>
-                        {this.state.users.map((user,index) => <p key={index}>{user.FirstName}</p>)}
+                        {this.state.users.map((user,index) => <p onClick={()=>this.getMessage(user)} key={index}>{user.FirstName}</p>)}
                     </div>
                     <div className="column2">
                         <h3>User name</h3>
-                        <div className="chat"></div>
+                        <div className="chat">
+                            {messages}
+                            {/* {filteredMsg} */}
+                        </div>
                         <div className="user">
                             <input type="text" placeholder="type your message here" />
                             <button type="submit">send</button>

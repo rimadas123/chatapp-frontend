@@ -50,7 +50,13 @@ export default class Register extends React.Component {
             userservice.resgisterservice(user)
             .then((result) => {
                 alert("successfully created user",result);
-                this.setState({FirstName:'',LastName:'',Email:'',Password:''})
+                this.setState({
+                    FirstName:'',
+                    LastName:'',
+                    Email:'',
+                    Password:''
+                });
+                this.props.history.push('/sign-in');
             }).catch((err) => {
                 console.log(err);
             });

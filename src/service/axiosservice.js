@@ -18,6 +18,9 @@ const userservice = {
         },
         userlistservice : function() {
             return axios.get(BASEURL+'/userlist');
+        },
+        getmessageservice: function(){
+            return axios.get(BASEURL+'/getmessages');
         }
 }
 

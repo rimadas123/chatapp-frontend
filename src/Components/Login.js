@@ -6,17 +6,21 @@ export default class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            Email: '',
-            Password: ''          
+            Email: null,
+            Password: null,
+            formErrors:{
+                Email:'',
+                Password:''
+            }         
         }
     }
 
     handleChange = event => {
         event.preventDefault();
 
-       this.setState({
-           [event.target.name]:event.target.value
-       })
+        this.setState({
+            [event.target.name]:event.target.value
+        })
     }
 
     handleSubmit = event => {   
@@ -25,6 +29,7 @@ export default class Login extends React.Component {
             if(this.state.Email===null&&this.state.Password===null){
                 return;
             }
+
             const user = {
                 Email:this.state.Email,
                 Password:this.state.Password
@@ -41,7 +46,8 @@ export default class Login extends React.Component {
                     this.setState({
                         Email:'',
                         Password:''
-                    })
+                    });
+                    this.props.history.push('/dashboard');
                 })
             .catch(err => {
                 console.log("error caught",err);
