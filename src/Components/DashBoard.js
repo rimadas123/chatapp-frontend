@@ -44,10 +44,10 @@ export default class DashBoard extends React.Component{
                     <div className="column2">
                         <h3>User name</h3>
                         <div className="chat"></div>
-                        <form className="user">
+                        <div className="user">
                             <input type="text" placeholder="type your message here" />
                             <button type="submit">send</button>
-                        </form>
+                        </div>
                     </div>
                     </div>
                 </div>

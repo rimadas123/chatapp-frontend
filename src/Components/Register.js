@@ -36,18 +36,20 @@ export default class Register extends React.Component {
         
         if(formValid(this.state.formErrors)){
 
+            if(this.state.FirstName===null && this.state.LastName===null && this.state.Email===null && this.state.Password===null){
+                return ;
+            }
             const user = {
                 FirstName: this.state.FirstName,
                 LastName: this.state.LastName,
                 Email: this.state.Email,
                 Password: this.state.Password
             };
-
             console.log(user);
             
             userservice.resgisterservice(user)
             .then((result) => {
-                console.log("successfully created user",result);
+                alert("successfully created user",result);
                 this.setState({FirstName:'',LastName:'',Email:'',Password:''})
             }).catch((err) => {
                 console.log(err);
@@ -81,7 +83,7 @@ export default class Register extends React.Component {
                 console.log("wrong input");
                 break;   
             }
-        this.setState({ formErrors, [name]: value}, () => console.log(this.state));
+        this.setState({ formErrors, [name]: value}, () => (this.state));
     }
 
     render() {
