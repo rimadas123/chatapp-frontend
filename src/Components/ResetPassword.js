@@ -1,6 +1,7 @@
 import React from "react";
 import './css/form.css';
-import userservice from '../service/axiosservice';
+import Userservice from '../service/axiosservice';
+const userservice = new Userservice();
 
 export default class ResetPassword extends React.Component {
     constructor(props) {

@@ -1,28 +1,28 @@
 import axios from "axios";
 const BASEURL = 'http://localhost:3001';
 
-const userservice = {
-        resgisterservice : function(res) {
-         return axios.post(BASEURL+'/register', res)
+class Userservice {
+        resgisterservice = (data) => {
+         return axios.post(BASEURL+'/register', data)
 
-        },
-        loginservice : function(res) {
+        }
+        loginservice = (data) => {
             // console.log(res);
-         return axios.post(BASEURL+'/login', res);
-        },
-        forgotpasswordservice : function(res){
-            return axios.post(BASEURL+'/forgotpassword', res);
-        },
-        resetpasswordservice : function(res) {
-            return axios.post(BASEURL+'/resetpassword', res);
-        },
-        userlistservice : function() {
+         return axios.post(BASEURL+'/login', data);
+        }
+        forgotpasswordservice = (data) => {
+            return axios.post(BASEURL+'/forgotpassword', data);
+        }
+        resetpasswordservice = (data) => {
+            return axios.post(BASEURL+'/resetpassword', data);
+        }
+        userlistservice = () => {
             return axios.get(BASEURL+'/userlist');
-        },
-        getmessageservice: function(){
+        }
+        getmessageservice = () => {
             return axios.get(BASEURL+'/getmessages');
         }
 }
 
-export default userservice;
+export default Userservice;
 
