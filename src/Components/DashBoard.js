@@ -116,9 +116,15 @@ export default class DashBoard extends React.Component {
 
     render() {
 
-        let chatcss = this.state.receiverId ? "senderMsg":"receiverMsg"
         let messages = this.state.messageArray.map((msg, index) => {
-            return (<div key={index}>{msg.message}</div>)
+            return (
+              
+                (msg.receiverId === this.state.receiverId )? <div className="msg_cotainer" key={index}>{ msg.message }</div>
+                : 
+                <div className="msg_cotainer_send" key={index}>{msg.message}</div>
+
+               
+            )
         })
         return (
             <div className="dashboard">
@@ -138,13 +144,8 @@ export default class DashBoard extends React.Component {
                             
                        
                         <div className="chat">
-                            <div className="senderMsg">
-                            {/* {this.state.messageArray.map((msg, index) => <div key={index}>{msg.senderId!==this.state.senderId?msg.message:null}</div>)} */}
-                        </div>
-                        <div className={chatcss}>
-                            {/* {this.state.messageArray.map((msg, index) => <div key={index}>{msg.receiverId===this.state.receiverId?msg.message:null}</div>)} */}
-                            {messages}
-                        </div>
+                                {messages}
+                            </div>
                         </div>
                     </div>
                     <div className="user">
@@ -153,7 +154,6 @@ export default class DashBoard extends React.Component {
                     </div>
                 </div>
             </div>
-            </div >
         );
     }
 }
