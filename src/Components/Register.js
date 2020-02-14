@@ -2,18 +2,11 @@ import React from "react";
 import './css/form.css';
 import { Link } from 'react-router-dom';
 import Userservice from '../service/axiosservice';
+import * as regrex from '../service/validator';
 const userservice = new Userservice();
 
 const emailRegex = RegExp(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
 
-const formValid = formErrors => {
-    let valid = true;
-
-    Object.values(formErrors).forEach(val => {
-        val.length > 0 && (valid = false);
-    });
-    return valid;
-}
 export default class Register extends React.Component {
     constructor(props) {
         super(props);
@@ -35,7 +28,7 @@ export default class Register extends React.Component {
     handleSubmit= e => {
         e.preventDefault();
         
-        if(formValid(this.state.formErrors)){
+        if(regrex.formValid(this.state.formErrors)){
 
             if(this.state.FirstName===null && this.state.LastName===null && this.state.Email===null && this.state.Password===null){
                 return ;
@@ -51,13 +44,13 @@ export default class Register extends React.Component {
             userservice.resgisterservice(user)
             .then((result) => {
                 alert("successfully created user",result);
+                this.props.history.push('/sign-in');
                 this.setState({
                     FirstName:'',
                     LastName:'',
                     Email:'',
                     Password:''
                 });
-                this.props.history.push('/sign-in');
             }).catch((err) => {
                 console.log(err);
             });
@@ -152,6 +145,7 @@ export default class Register extends React.Component {
                         placeholder="Password" 
                         name="Password" 
                         onChange={this.handleChange}
+                        autoComplete="on"
                         />
                         { formErrors.Password.length > 0 && (
                             <span className="errorMessage">{formErrors.Password}</span>
