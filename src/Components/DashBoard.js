@@ -1,10 +1,10 @@
 import React from 'react';
 import './css/dashboard.css';
 import Userservice from '../service/axiosservice';
-import socketIO from 'socket.io-client'
+import socketIOClient from 'socket.io-client'
 
 const userservice = new Userservice();
-let socket;
+const socket = socketIOClient('http://localhost:3001');
 export default class DashBoard extends React.Component {
     constructor(props) {
         super(props);
@@ -14,35 +14,30 @@ export default class DashBoard extends React.Component {
             messageArray: [],
             filtermessage: [],
             text: '',
-            receiverId:'',
-            senderId:''
+            receiverId: '',
+            senderId: '',
+            username: '',
+            loginUser: ''
         }
     }
+
     componentDidMount() {
+        this.setState({ loginUser: localStorage.getItem('senderName') })
         this.getUserList();
-        // const { endpoint } = this.state;
-        // const socket = socketIOClient(endpoint);
-        // socket.on('connection',data => this.setState({ response:data }))
-        // socket.on('message', function(msg){
-        //     console.log(msg);
-        // })
-        socket = socketIO("http://localhost:3001");
-        socket.on("chat message", (data, error) => {
 
-            if (data) {
-                console.log("result is back...", data);
-
+        socket.on("newmessage", (data, error) => {
+            if (data)
+            {
                 var resultArray = [];
-                // resultArray.push(result);
                 resultArray = this.state.messageArray;
-
                 resultArray.push(data)
+
+                console.log("in resultArray==>", resultArray);
 
                 this.setState({
                     messageArray: resultArray
                 })
 
-                // console.log("Received Messages are---->", JSON.stringify(this.state.messageArray));
             }
             else {
                 console.log("Error in received message--->", error);
@@ -67,6 +62,7 @@ export default class DashBoard extends React.Component {
         localStorage.setItem('receiverId', user._id)
         localStorage.setItem('receiverName', user.FirstName)
         this.setState({ receiverId: user._id, senderId: localStorage.getItem('senderId') })
+        this.setState({ username: localStorage.getItem('receiverName'), loginUser: localStorage.getItem('senderName') })
 
         await userservice.getmessageservice()
             .then(res => {
@@ -90,6 +86,7 @@ export default class DashBoard extends React.Component {
 
     sendMessage = event => {
         event.preventDefault();
+
         let sendArray = []
         const msgObj = {
             senderId: localStorage.getItem('senderId'),
@@ -100,7 +97,8 @@ export default class DashBoard extends React.Component {
         }
         socket.emit('newMsg', msgObj);
         sendArray = this.state.messageArray;
-        sendArray.push(msgObj);
+
+        // sendArray.push(msgObj);
         this.setState({
             messageArray: sendArray
         })
@@ -118,37 +116,31 @@ export default class DashBoard extends React.Component {
 
         let messages = this.state.messageArray.map((msg, index) => {
             return (
-              
-                (msg.receiverId === this.state.receiverId )? <div className="msg_cotainer" key={index}>{ msg.message }</div>
-                : 
-                <div className="msg_cotainer_send" key={index}>{msg.message}</div>
 
-               
+                (msg.receiverId === this.state.receiverId) ? <div className="msg_cotainer" key={index}><div className="msg_cotainer_in"> {msg.message} </div></div>
+                    :
+                    <div className="msg_cotainer_send" key={index}>{msg.message}</div>
             )
         })
         return (
             <div className="dashboard">
                 <div className="topNav">
                     <h3>ChatApp</h3>
+                    
                     <button className="right-col" onClick={this.logout}>Logout</button>
+                    <h3 className="username">Welcome {this.state.loginUser}</h3>
                 </div>
 
                 <div className="row">
                     <div className="column1">
-                        <h3>Users List</h3>
-                        {this.state.users.map((user, index) => <p onClick={() => this.getMessage(user)} key={index}>{user.FirstName}</p>)}
+                        <h3>Users List</h3> 
+                        {this.state.users.map((user, index) => <p onClick={() => this.getMessage(user)} key={index}>{user.FirstName !== this.state.loginUser ? user.FirstName : null}</p>)}
                     </div>
                     <div className="column2">
-                        <h3>User name</h3>
-                        <div style={{display:"flex",flexDirection:"row"}}>
-                            
-                       
+                        <h3>{this.state.username}</h3>
                         <div className="chat">
-                                {messages}
-                            </div>
+                            {messages}
                         </div>
-                    </div>
-                    <div className="user">
                         <input type="text" name="text" placeholder="type your message here" value={this.state.text} onChange={this.inputChange} />
                         <button type="submit" onClick={this.sendMessage}>send</button>
                     </div>
@@ -157,3 +149,4 @@ export default class DashBoard extends React.Component {
         );
     }
 }
+// style={{display:"flex",flexDirection:"row"}}

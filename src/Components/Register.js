@@ -45,12 +45,6 @@ export default class Register extends React.Component {
             .then((result) => {
                 alert("successfully created user",result);
                 this.props.history.push('/sign-in');
-                this.setState({
-                    FirstName:'',
-                    LastName:'',
-                    Email:'',
-                    Password:''
-                });
             }).catch((err) => {
                 console.log(err);
             });

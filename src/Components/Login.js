@@ -59,18 +59,13 @@ export default class Login extends React.Component {
                 localStorage.setItem('senderName',res.data.data[0].FirstName);
                 localStorage.setItem('senderEmail',res.data.data[0].Email); 
                 this.props.history.push('/dashboard');
-                    this.setState({
-                        Email:'',
-                        Password:''
-                    });
                 })
             .catch(err => {
                 console.log("error caught",err);
             })
         } else {
             console.log("wrong input");
-        }
-                 
+        }        
     }
     
     render() {

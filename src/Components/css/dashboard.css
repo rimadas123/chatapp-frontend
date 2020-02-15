@@ -17,9 +17,8 @@
     height: 400px;
     width: 100%;
     background-color: #f2f2f2;
-    display: flex;
     overflow-x: hidden; 
-    overflow-x: auto; 
+    overflow-y: auto; 
 }
 
 .column1{
@@ -68,10 +67,10 @@ button{
     padding: 10px;
 }
 
-.msg_cotainer{
+.msg_cotainer {
     margin-top: auto;
     margin-bottom: auto;
-    margin-left: 10px;
+    margin-right: 10px;
     border-radius: 20px;
     background-color:transparent;
     padding: 10px;
@@ -80,20 +79,31 @@ button{
     flex-direction: row;
     justify-content: flex-end;
     }
-    .msg_cotainer_send{
-        width: fit-content;
-        width: max-content;
+.msg_cotainer_send{
+    width: fit-content;
     margin-top: auto;
     margin-bottom: auto;
     margin-right: 10px;
     border-radius: 20px;
-    background-color: #78e08f;
+    background-color: #96e1ee;
     padding: 10px;
     position: relative;
-    }
-    .chatMsgRec{
+}
+/* .chatMsgRec{
     background-color: #96e1ee;
     border-radius: 25px;
     padding: 10px;
     width: max-content;
-    }
+} */
+
+.msg_cotainer_in {
+    padding: 10px;
+    background-color: cadetblue;
+    border-radius: 20px;
+}
+
+.username{
+    float: right;
+    margin-right: 58px;
+    margin-bottom: 0;
+}

@@ -20,20 +20,21 @@ export default class ResetPassword extends React.Component {
  
     handleSubmit = event => {
         event.preventDefault();
-        
-        const reset = {
-            NewPassword:this.state.NewPassword,
-            ConfirmPassword:this.state.ConfirmPassword
-        }
        
-        userservice.resetpasswordservice(reset)
-        .then(res =>{
-            console.log(res);
-            console.log(res.data);
-        })
-        .catch(err => {
-            console.log("caught error",err);
-        })
+        if(this.state.NewPassword === this.state.ConfirmPassword){
+            userservice.resetpasswordservice(this.state.NewPassword)
+            .then(res =>{
+                console.log(res);
+                console.log(res.data);
+            })
+            .catch(err => {
+                console.log("caught error",err);
+            })
+        }
+        else {
+            console.log("passwords doesnt match")
+        }
+        
     }
 
     render(){
